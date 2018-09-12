@@ -46,7 +46,7 @@ power on
 scan on
 pair ?
 #remove ?
-sudo hciconfig hci up
+sudo hciconfig hci up #<class 'lightblue._lightbluecommon.BluetoothError'>, A_BT-ftp-server.py, 102, Cannot access local device: no available bluetoot devices
 sudo nano /etc/systemd/system/bluetooth.target.wants/bluetooth.service
 #應該可以跑伺服器了 #Now, you can run the BT server.
 sudo ./A_BT-ftp-server.py
