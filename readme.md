@@ -34,8 +34,9 @@ sudo nano /etc/systemd/system/dbus-org.bluez.service
 #ExecStart=/usr/lib/bluetooth/bluetoothd -C
 #add ExecStartPost=/usr/bin/sdptool add sp
 sudo sed -i '9s/.*/ExecStart=\/usr\/lib\/bluetooth\/bluetoothd -C/' /etc/systemd/system/dbus-org.bluez.service #replace string and save in one-line
-sudo systemctl daemon-reload
-sudo systemctl restart bluetooth
+#sudo rm -r /etc/systemd/system/dbus-org.bluez.service # 如果你很不幸的rekt了bluez的設定檔，請執行本行、以及以下兩行 ##
+sudo systemctl daemon-reload ##
+sudo systemctl restart bluetooth ##
 ```
 ## Normal
 ```bash=
