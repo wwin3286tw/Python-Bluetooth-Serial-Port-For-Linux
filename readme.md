@@ -39,6 +39,8 @@ sudo nano /etc/systemd/system/dbus-org.bluez.service
 sudo systemctl daemon-reload
 sudo systemctl restart bluetooth
 ```
+{%gist schacon/4277%}
+
 ## Normal
 ```bash=
 cd ~
