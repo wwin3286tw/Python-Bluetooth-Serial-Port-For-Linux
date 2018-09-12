@@ -38,7 +38,9 @@ cd ~
 sudo cp dbus-org.bluez.service /etc/systemd/system/dbus-org.bluez.service # 如果你很不幸的rekt了bluez的設定檔，請再次執行本行、以及以下兩行 ##
 sudo systemctl daemon-reload
 sudo systemctl restart bluetooth
+sudo -H python -m pip install bluetooth
 #應該可以跑伺服器了 #Now, you can run the BT server.
+./A_BT-ftp-server.py
 ```
 ## Normal
 ```bash=
