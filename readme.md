@@ -38,11 +38,13 @@ cd ~
 sudo cp dbus-org.bluez.service /etc/systemd/system/dbus-org.bluez.service # 如果你很不幸的rekt了bluez的設定檔，請再次執行本行、以及以下兩行 ##
 sudo systemctl daemon-reload
 sudo systemctl restart bluetooth
+
 ```
 ## Normal
 ```bash=
 cd ~
 git clone https://gist.github.com/wwin3286tw/ae7ef8149e474475b14fde89b7c8783c blueServer
 cd blueServer
+chmod 755 *.py
 
 ```
