@@ -44,6 +44,7 @@ sudo -H python -m pip install pybluez
 sudo hciconfig hci up
 #應該可以跑伺服器了 #Now, you can run the BT server.
 sudo ./A_BT-ftp-server.py
+#sudo apt-get install -y bluez-tools 
 ```
 ## Normal
 ```bash=
