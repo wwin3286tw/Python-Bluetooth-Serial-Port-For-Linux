@@ -15,6 +15,18 @@
 3. Camera Control, Take picture.
 4. Waiting you to add more function.
 # Installation
+## Friend ARM NanoPi NEO Air
+```bash=
+sudo cp /usr/share/zoneinfo/Asia/Taipei /etc/localtime
+sudo apt-get install software-properties-common ntpdate
+sudo ntpdate tick.stdtime.gov.tw
+sudo add-apt-repository ppa:apt-fast/stable
+sudo add-apt-repository ppa:apt-fast/stable
+sudo apt-get update
+sudo apt-get -y install apt-fast
+sudo apt-fast -y install build-essential cmake pkg-config cmake automake autoconf autotools-dev fswebcam unzip p7zip-full locate 
+```
+## Normal
 ```bash=
 git clone https://gist.github.com/wwin3286tw/ae7ef8149e474475b14fde89b7c8783c blueServer
 cd blueServer
