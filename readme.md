@@ -27,6 +27,7 @@ sudo add-apt-repository ppa:apt-fast/stable
 sudo apt-get update
 sudo apt-get -y install apt-fast
 sudo apt-fast -y install build-essential cmake pkg-config cmake automake autoconf autotools-dev fswebcam unzip p7zip-full locate libbluetooth-dev libopenobex* python-pip
+sudo apt-fast install -y libusb-dev libdbus-1-dev libglib2.0-dev libudev-dev libical-dev libreadline-dev
 git clone https://github.com/0-1-0/lightblue-0.4.git
 cd lightblue-0.4
 sudo -H python setup.py install
@@ -39,6 +40,7 @@ sudo cp dbus-org.bluez.service /etc/systemd/system/dbus-org.bluez.service # 如�
 sudo systemctl daemon-reload
 sudo systemctl restart bluetooth
 sudo -H python -m pip install pybluez
+sudo hciconfig hci up
 #應該可以跑伺服器了 #Now, you can run the BT server.
 ./A_BT-ftp-server.py
 ```
