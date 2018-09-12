@@ -23,7 +23,7 @@ sudo cp /usr/share/zoneinfo/Asia/Taipei /etc/localtime
 sudo apt-get update
 sudo apt-get -y install software-properties-common ntpdate
 sudo ntpdate tick.stdtime.gov.tw
-sudo add-apt-repository ppa:apt-fast/stable
+sudo add-apt-repository ppa:apt-fast/stable -y
 sudo apt-get update
 sudo apt-get -y install apt-fast
 sudo apt-fast -y install build-essential cmake pkg-config cmake automake autoconf autotools-dev fswebcam unzip p7zip-full locate libbluetooth-dev libopenobex* python-pip
