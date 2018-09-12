@@ -26,8 +26,8 @@ sudo ntpdate tick.stdtime.gov.tw
 sudo add-apt-repository ppa:apt-fast/stable -y
 sudo apt-get update
 sudo apt-get -y install apt-fast
-sudo apt-fast -y install build-essential cmake pkg-config cmake automake autoconf autotools-dev fswebcam unzip p7zip-full locate libbluetooth-dev libopenobex* python-pip
-sudo apt-fast install -y libusb-dev libdbus-1-dev libglib2.0-dev libudev-dev libical-dev libreadline-dev
+sudo apt-fast -y install build-essential cmake pkg-config cmake automake autoconf autotools-dev fswebcam unzip p7zip-full locate libbluetooth-dev libopenobex* python-pip libusb-dev libdbus-1-dev libglib2.0-dev libudev-dev libical-dev libreadline-dev
+#sudo apt-fast install -y libusb-dev libdbus-1-dev libglib2.0-dev libudev-dev libical-dev libreadline-dev
 git clone https://github.com/0-1-0/lightblue-0.4.git
 cd lightblue-0.4
 sudo -H python setup.py install
