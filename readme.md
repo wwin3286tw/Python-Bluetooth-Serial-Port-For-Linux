@@ -15,4 +15,7 @@
 3. Camera Control, Take picture.
 4. Waiting you to add more function.
 # Installation
-1. Wating Update.
+```bash=
+git clone https://gist.github.com/wwin3286tw/ae7ef8149e474475b14fde89b7c8783c blueServer
+cd blueServer
+```
