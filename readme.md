@@ -17,7 +17,8 @@
 # Installation
 ## Friend ARM NanoPi NEO Air
 ```bash=
-sudo nmcli dev wifi connect ? password ? ifname wlan0
+#sudo nmcli dev wifi connect ? password ? ifname wlan0
+sudo nmcli dev wifi connect Kaiwood password 0660006000 ifname wlan0
 sudo cp /usr/share/zoneinfo/Asia/Taipei /etc/localtime
 sudo apt-get install software-properties-common ntpdate
 sudo ntpdate tick.stdtime.gov.tw
