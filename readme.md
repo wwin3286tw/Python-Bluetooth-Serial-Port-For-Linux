@@ -1,4 +1,4 @@
-# Python Bluetooth Classic Serial Port Communication
+# <font color="Green">Python Bluetooth Classic Serial Port Communication<font>
 ## Support platform and Software Dependency
 1. Linux(Ubuntu 16.04 tested)
 2. Python2 only
