@@ -43,7 +43,7 @@ sudo systemctl restart bluetooth
 sudo -H python -m pip install pybluez
 sudo hciconfig hci up
 #應該可以跑伺服器了 #Now, you can run the BT server.
-./A_BT-ftp-server.py
+sudo ./A_BT-ftp-server.py
 ```
 ## Normal
 ```bash=
