@@ -6,7 +6,7 @@ ConditionPathIsDirectory=/sys/class/bluetooth
 [Service]
 Type=dbus
 BusName=org.bluez
-ExecStart=/usr/lib/bluetooth/bluetoothd -C
+ExecStart=/usr/lib/bluetooth/bluetoothd
 NotifyAccess=main
 #WatchdogSec=10
 #Restart=on-failure
@@ -16,4 +16,3 @@ LimitNPROC=1
 [Install]
 WantedBy=bluetooth.target
 Alias=dbus-org.bluez.service
-ExecStartPost=/usr/bin/sdptool add sp
