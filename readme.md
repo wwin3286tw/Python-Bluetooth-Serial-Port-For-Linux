@@ -45,6 +45,7 @@ sudo hciconfig hci up
 #應該可以跑伺服器了 #Now, you can run the BT server.
 sudo ./A_BT-ftp-server.py
 #sudo apt-get install -y bluez-tools 
+#sudo btmon #監聽藍芽封包
 ```
 ## Normal
 ```bash=
