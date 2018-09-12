@@ -47,6 +47,7 @@ scan on
 pair ?
 #remove ?
 sudo hciconfig hci up
+sudo nano /etc/systemd/system/bluetooth.target.wants/bluetooth.service
 #應該可以跑伺服器了 #Now, you can run the BT server.
 sudo ./A_BT-ftp-server.py
 #sudo apt-get install -y bluez-tools 
