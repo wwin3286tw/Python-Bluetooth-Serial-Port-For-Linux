@@ -37,6 +37,7 @@ log "開始使用pip安裝必要的python程式庫"
 sudo -H python -m pip install pybluez
 #sudo /usr/bin/sdptool add sp
 log "設定藍芽可被偵測、配對"
+cd ~/blueServer
 sudo bluetoothctl <<EOF
 power on
 discoverable on
@@ -45,4 +46,3 @@ agent NoInputNoOutput
 default-agent 
 EOF
 log "可以跑該死的藍芽序列伺服器了"
-cd ~/blueServer
