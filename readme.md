@@ -18,22 +18,17 @@
 ## Friend ARM NanoPi NEO Air
 ```bash=
 #sudo nmcli dev wifi connect ? password ? ifname wlan0
-sudo nmcli dev wifi connect Kaiwood password 0660006000 ifname wlan0
-wait
+sudo nmcli dev wifi connect Kaiwood password 0660006000 ifname wlan0;wait
 sudo cp /usr/share/zoneinfo/Asia/Taipei /etc/localtime
-sudo apt-get update
-wait
+sudo apt-get update;wait
 sudo apt-get -y install software-properties-common ntpdate
 sudo ntpdate tick.stdtime.gov.tw
-sudo add-apt-repository ppa:apt-fast/stable -y
+sudo add-apt-repository ppa:apt-fast/stable -y;wait
 sudo apt-get update
-sudo apt-get -y install apt-fast
-wait
-sudo apt-fast -y install build-essential cmake pkg-config cmake automake autoconf autotools-dev fswebcam unzip p7zip-full locate libbluetooth-dev libopenobex* python-pip libusb-dev libdbus-1-dev libglib2.0-dev libudev-dev libical-dev libreadline-dev
-wait
+sudo apt-get -y install apt-fast;wait
+sudo apt-fast -y install build-essential cmake pkg-config cmake automake autoconf autotools-dev fswebcam unzip p7zip-full locate libbluetooth-dev libopenobex* python-pip libusb-dev libdbus-1-dev libglib2.0-dev libudev-dev libical-dev libreadline-dev;wait
 #sudo apt-fast install -y libusb-dev libdbus-1-dev libglib2.0-dev libudev-dev libical-dev libreadline-dev
 git clone https://github.com/0-1-0/lightblue-0.4.git
-wait
 cd lightblue-0.4
 sudo -H python setup.py install
 cd ~
