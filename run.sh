@@ -4,7 +4,9 @@ now="`date '+%Y-%m-%d %H:%M:%S.%3N'`";
 printf -v now "[%s %s]" $now 
 echo "${now} ${@}"
 }
-
+cd ~/blueServer
+log "複製dbus-org.bluez.service設定檔"
+sudo cp dbus-org.bluez.service /etc/systemd/system/dbus-org.bluez.service
 log "將時區更新為 /亞洲/台北"
 sudo cp /usr/share/zoneinfo/Asia/Taipei /etc/localtime
 log "取得最新軟體清單"
@@ -19,11 +21,10 @@ log "開始安裝主要元件，這需費時較久，請稍後。"
 sudo apt-fast -y install build-essential cmake pkg-config cmake automake autoconf autotools-dev fswebcam unzip p7zip-full locate libbluetooth-dev libopenobex* python-pip libusb-dev libdbus-1-dev libglib2.0-dev libudev-dev libical-dev libreadline-dev bluez-tools;wait
 log "主要元件安裝完成"
 log "開始克隆必要的python程式庫"
+cd ~/
 git clone https://github.com/0-1-0/lightblue-0.4.git ~/lightblue-0.4;wait
 cd ~/lightblue-0.4
 sudo -H python setup.py install;wait
-log "複製dbus-org.bluez.service設定檔"
-sudo cp dbus-org.bluez.service /etc/systemd/system/dbus-org.bluez.service
 log "重啟藍芽服務中"
 sudo systemctl daemon-reload
 sudo systemctl restart bluetooth
@@ -44,3 +45,4 @@ agent NoInputNoOutput
 default-agent 
 EOF
 log "可以跑該死的藍芽序列伺服器了"
+cd ~/blueServer
