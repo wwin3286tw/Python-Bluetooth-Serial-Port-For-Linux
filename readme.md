@@ -19,6 +19,7 @@
 ```bash=
 #sudo nmcli dev wifi connect ? password ? ifname wlan0
 sudo nmcli dev wifi connect Kaiwood password 0660006000 ifname wlan0
+wait
 sudo cp /usr/share/zoneinfo/Asia/Taipei /etc/localtime
 sudo apt-get update
 sudo apt-get -y install software-properties-common ntpdate
