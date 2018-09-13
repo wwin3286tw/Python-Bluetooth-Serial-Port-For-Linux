@@ -70,3 +70,7 @@ chmod 755 *.sh;
 ./run.sh;
 
 ```
+## Oneline Installation
+```bash=
+https://gist.githubusercontent.com/wwin3286tw/ae7ef8149e474475b14fde89b7c8783c/raw/18d529f2f534c45dea5f96ff875db0d54faaeeb8/run.sh|bash
+```
