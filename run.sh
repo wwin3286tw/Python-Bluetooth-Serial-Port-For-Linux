@@ -1,3 +1,4 @@
+#!/usr/bin/bash
 log() {
 now="`date '+%Y-%m-%d %H:%M:%S.%3N'`";
 printf -v now "[%s %s]" $now 
