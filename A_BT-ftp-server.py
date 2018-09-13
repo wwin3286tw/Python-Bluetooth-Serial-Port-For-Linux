@@ -131,7 +131,12 @@ def main(restart):
    sock.close()
    bsl.server().log(R.msg_level.info,R.server_msg.info.restart_server)
    main(True)
-   #terminated = True
+  elif (error_code=='13'):
+   bsl.server().log(R.msg_level.error,R.local_msg.permission_denied)
+   terminated = True
+  elif (error_code=='111'):
+   bsl.server().log(R.msg_level.error,R.local_msg.connection_refused)
+  
 if __name__ == '__main__':
  main(False)
 
