@@ -15,7 +15,7 @@
 3. Camera Control, Take picture.
 4. Waiting you to add more function.
 # Installation
-## Friend ARM NanoPi NEO Air
+## Manual reference
 ```bash=
 #sudo nmcli dev wifi connect ? password ? ifname wlan0
 sudo nmcli dev wifi connect Kaiwood password 0660006000 ifname wlan0;wait
