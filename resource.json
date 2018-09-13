@@ -46,5 +46,9 @@
   "msg_direction":{
     "TX":"送出",
     "RX":"收到"
+  },
+  "local_msg":{
+   "permission_denied":"請以root權限執行本程式",
+   "connection_refused":"連線被拒，請使用sudo hciconfig檢查"
   }
 }
