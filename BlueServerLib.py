@@ -25,6 +25,8 @@ import glob
 import re
 import subprocess
 from datetime import datetime
+reload(sys)  # Reload does the trick!
+sys.setdefaultencoding('UTF8')
 
 LocalhostName="Server_Localhost"
 def ReadFile(filename):
