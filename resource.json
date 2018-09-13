@@ -50,5 +50,7 @@
   "local_msg":{
    "permission_denied":"請以root權限執行本程式",
    "connection_refused":"連線被拒，請使用sudo hciconfig檢查"
+   "path_not_found_error":"請檢查設定檔 /etc/systemd/system/dbus-org.bluez.service，是否設定正確"
+   "bt_not_available":"請檢查藍芽裝置是否啟動"
   }
 }
