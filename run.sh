@@ -7,12 +7,9 @@ sudo apt-get update
 sudo apt-get -y install apt-fast;wait
 sudo apt-fast -y install build-essential cmake pkg-config cmake automake autoconf autotools-dev fswebcam unzip p7zip-full locate libbluetooth-dev libopenobex* python-pip libusb-dev libdbus-1-dev libglib2.0-dev libudev-dev libical-dev libreadline-dev bluez-tools;wait
 #sudo apt-fast install -y libusb-dev libdbus-1-dev libglib2.0-dev libudev-dev libical-dev libreadline-dev
-git clone https://github.com/0-1-0/lightblue-0.4.git ~/lightblue-0.4; &
-git clone https://gist.github.com/wwin3286tw/ae7ef8149e474475b14fde89b7c8783c ~/blueServer
+git clone https://github.com/0-1-0/lightblue-0.4.git ~/lightblue-0.4
 cd ~/lightblue-0.4
 sudo -H python setup.py install
-cd ~/blueServer
-chmod 755 *.py
 sudo cp dbus-org.bluez.service /etc/systemd/system/dbus-org.bluez.service 
 sudo chmod 777 /var/run/sdp
 sudo systemctl daemon-reload
