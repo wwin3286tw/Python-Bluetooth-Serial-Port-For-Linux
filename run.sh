@@ -30,10 +30,12 @@ sudo systemctl restart bluetooth
 log "重啟藍芽裝置"
 sudo hciconfig hci0 up
 log "藍芽重啟成功"
+log "變更Service Discovery Protocol(SDP)執行權限"
 sudo chmod 777 /var/run/sdp
+log "開始使用pip安裝必要的python程式庫"
 sudo -H python -m pip install pybluez
 #sudo /usr/bin/sdptool add sp
-sdptool add --channel=0 SP
+log "設定藍芽可被偵測、配對"
 sudo bluetoothctl <<EOF
 power on
 discoverable on
