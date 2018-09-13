@@ -25,8 +25,6 @@ import glob
 import re
 import subprocess
 from datetime import datetime
-reload(sys)  # Reload does the trick!
-sys.setdefaultencoding('UTF8')
 
 LocalhostName="Server_Localhost"
 def ReadFile(filename):
@@ -43,8 +41,6 @@ def GetResource(ResourceFile):
  from collections import namedtuple
  return json.loads(LoadResource(ResourceFile),object_hook=lambda d: namedtuple('X', d.keys())(*d.values()))
 
-ResourceFile="resource.json"
-GetResource(ResourceFile)
 
 def GetFileLen(filename):
   return str(os.path.getsize(filename))
@@ -104,8 +100,8 @@ class common:
   else:
    error_code=s
   return error_code
-#ResourceFile="resource.json"
-#R=GetResource(ResourceFile)
+ResourceFile="resource.json"
+R=GetResource(ResourceFile)
 #server().log(R.msg_level.info,R.file_msg.folder_exist)
 #cam0=camera('/dev/video0')
-#print(cam0.check_cam_online())
+#print(cam0.exists())
