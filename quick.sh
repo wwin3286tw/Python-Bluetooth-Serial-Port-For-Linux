@@ -5,4 +5,3 @@ cd blueServer;
 chmod 755 *.py;
 chmod 755 *.sh;
 ./run.sh;
-cd ~/blueServer
