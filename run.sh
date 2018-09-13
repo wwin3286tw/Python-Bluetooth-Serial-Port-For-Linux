@@ -2,7 +2,7 @@
 log() {
 now="`date '+%Y-%m-%d %H:%M:%S.%3N'`";
 printf -v now "[%s %s]" $now 
-log "${now} ${@}"
+echo "${now} ${@}"
 }
 
 log "將時區更新為 /亞洲/台北"
