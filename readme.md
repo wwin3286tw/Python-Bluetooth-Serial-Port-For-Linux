@@ -73,6 +73,6 @@ chmod 755 *.sh;
 ## Two line Installation(Fucking Wlan Setting)
 ```bash=
 sudo nmcli dev wifi connect Kaiwood password 0660006000 ifname wlan0;wait
-bash <(wget -qO- https://gist.githubusercontent.com/wwin3286tw/ae7ef8149e474475b14fde89b7c8783c/raw/18d529f2f534c45dea5f96ff875db0d54faaeeb8/run.sh)
+bash <(wget -qO- https://gist.githubusercontent.com/wwin3286tw/ae7ef8149e474475b14fde89b7c8783c/raw/89fc69868ac1ed58cd405a96f364d83a7f81615b/quick.sh)
 ```
 
