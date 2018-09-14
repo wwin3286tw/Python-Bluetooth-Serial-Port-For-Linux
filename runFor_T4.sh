@@ -17,7 +17,7 @@ sudo cp /usr/share/zoneinfo/Asia/Taipei /etc/localtime
 log "取得最新軟體清單"
 sudo apt-get update;wait
 log "安裝基本組件"
-sudo apt-get -y install ntpdate curl
+sudo apt-get -y install ntpdate curl software-properties-common
 sudo ntpdate tick.stdtime.gov.tw;wait
 log "安裝 apt-fast..."
 sudo add-apt-repository ppa:apt-fast/stable -y;wait
