@@ -4,6 +4,12 @@ now="`date '+%Y-%m-%d %H:%M:%S.%3N'`";
 printf -v now "[%s %s]" $now 
 echo "${now} ${@}"
 }
+cd ~
+wget https://w1.fi/cgit/hostap/plain/hostapd/hostapd.conf
+sudo cp hostapd.conf /etc/hostapd/hostapd.conf
+sudo systemctl restart hostapd
+sudo systemctl status hostapd
+rm hostapd.conf
 cd ~/blueServer
 log "複製dbus-org.bluez.service設定檔"
 sudo cp dbus-org.bluez.service /etc/systemd/system/dbus-org.bluez.service
