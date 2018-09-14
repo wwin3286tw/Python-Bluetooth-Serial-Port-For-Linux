@@ -8,7 +8,6 @@ cd ~
 wget https://w1.fi/cgit/hostap/plain/hostapd/hostapd.conf
 sudo cp hostapd.conf /etc/hostapd/hostapd.conf
 sudo systemctl restart hostapd
-sudo systemctl status hostapd
 rm hostapd.conf
 cd ~/blueServer
 log "複製dbus-org.bluez.service設定檔"
