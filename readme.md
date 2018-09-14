@@ -1,5 +1,5 @@
 # <font color="Green">Python Bluetooth Classic Serial Port Communication<font>
-## Support platform and Software Dependency
+## Suggest platform and Software Dependency
 1. Linux(Ubuntu 16.04 tested)
 2. Python2 only
 3. Lightblue module(only on python2)
@@ -15,6 +15,7 @@
 3. Camera Control, Take picture.
 4. Waiting you to add more function.
 # Installation
+
 ## Manual reference
 ```bash=
 #sudo nmcli dev wifi connect ? password ? ifname wlan0

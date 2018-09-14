@@ -4,13 +4,17 @@
 ###Code Summary###
 Author: Jack
 E-Mail: wwin3286tw@yahoo.com.tw
-Date: 2018-09-12
-Time: 09:16:20 GMT+8
-Description: BlueTooth classic Serial port C&C&FTP(Control & Communication& Fuck Trust Pig) Server support library
+Tested Date: 2018-09-14 11:39:15 GMT+8
+Description: BlueTooth classic Serial port ccFTP(Control & Communication& Fuck Trust Pig) Server support library
 ReadMe: 
 1. Using Java like R Resource File.
 2. #sed -i -e 's/\r$//' scriptname.sh #If you have DAMN ^M problem, try this shit.
-3. Enjoy your fucking salary.
+3. Enjoy fucking salary.
+Version Change info:
+1. Code Refactoried.
+2. Naming improved.
+3. Add debug mode, Enable to show exception.
+4. Code more clear than before. Although cannot see the older code.
 ###Code Summary###
 '''
 
