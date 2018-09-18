@@ -1,7 +1,10 @@
+# DEPRECATED, DEPRECATED, DEPRECATED, DEPRECATED, DEPRECATED, DEPRECATED, DEPRECATED
 # <font color="Green">Python Bluetooth Classic Serial Port Communication<font>
+## WARNING: DEPRECATED, THIS GIST WILL NO LONGER ABLE TO MAINTAIN.
 ## New issue
 1. Format the data.
 2. String and bytes using different channel.
+3. Add Wifi mode for faster file trasnfer.
 ## Suggest platform and Software Dependency
 1. Linux(Ubuntu 16.04 tested)
 2. Python2 only
@@ -18,7 +21,7 @@
 3. Camera Control, Take picture.
 4. Waiting you to add more function.
 # Installation
-
+  
 ## Manual reference
 ```bash=
 #sudo nmcli dev wifi connect ? password ? ifname wlan0
