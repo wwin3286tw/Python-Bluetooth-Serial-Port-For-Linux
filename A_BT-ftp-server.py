@@ -6,7 +6,7 @@ Author: Jack
 E-Mail: wwin3286tw@yahoo.com.tw
 Date: 2018-09-12
 Time: 09:16:20 GMT+8
-Description: BlueTooth classic Serial port ccFTP(Control & Communication& Fuck Trust Pig) Server
+Description: BlueTooth classic Serial port ccFTP(Control & Communication& File Transfer Protocol) Server
 ReadMe: 
 1. Using Java like R Resource File.
 2. #sed -i -e 's/\r$//' scriptname.sh #If you have DAMN ^M problem, try this shit.
