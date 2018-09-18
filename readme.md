@@ -1,4 +1,4 @@
-# * DEPRECATED - DEPRECATED - DEPRECATED - DEPRECATED *
+# *DEPRECATED - DEPRECATED - DEPRECATED - DEPRECATED*
 # <font color="Green">Python Bluetooth Classic Serial Port Communication<font>
 ## WARNING: DEPRECATED, THIS GIST WILL NO LONGER ABLE TO MAINTAIN.
 ## New issue
