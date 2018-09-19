@@ -111,7 +111,7 @@ def main(restart):
   while(flag):
    data = conn.recv(1024).rstrip()
    #print(data)
-   bsl.server().log(R.msg_direction.RX,data)
+   bsl.server().log(R.msg_level.info,R.msg_direction.RX,data)
    command_selector(conn,data)
  except KeyboardInterrupt:
   print
