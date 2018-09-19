@@ -77,7 +77,7 @@ class device:
      devices.append(dinfo)
   return devices
 class camera:
- #這裡務必宣告成物件在使用相機 #支援多相機操營養
+ #這裡務必宣告成物件，再使用相機 #支援多相機操營養
  def __init__(self,camPath):
   self.CamPath=camPath
  def take_photo(self,Filename):
