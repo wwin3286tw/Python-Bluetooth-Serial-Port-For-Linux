@@ -1,7 +1,7 @@
 # <font color="Green">Python Bluetooth Classic Serial Port Communication</font>
-# Copyright © 2018-09 by Yi,Jia-Ye
+# Copyright © 2018-09 by Yi,Jia-Ye All Rights Reserved
 ## <font color="orange">WARNING: DEPRECATED, THIS GIST WILL NO LONGER ABLE TO MAINTAIN.</font>
-## <font color="orange">THIS SCRIPTS COMES WITH ABSOLUTELY NO WARRANTY, USE AT YOUR OWN RISK.</font>
+### <font color="orange">THIS SCRIPTS COMES WITH ABSOLUTELY NO WARRANTY, USE AT YOUR OWN RISK.</font>
 
 ## New issue
 1. Format the data.
