@@ -84,7 +84,7 @@ cd ~/blueServer
 ```
 ## Uninstall
 ```bash
-cd~ 
+cd ~
 rm -rf blueServer/
 ```
 
