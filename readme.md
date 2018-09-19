@@ -14,7 +14,7 @@
 3. Lightblue module(only on python2)
 ## Server Hardware Recommand
 1. Single Board Computer(Ex: Raspberry)
-2. Linux Base PC
+2. Linux Base PC with WIFI and BT
 ## Client Hardware Recommand
 1. Android Phone(tested)
 2. Support bluetooth classic Serial Port Profile(SPP) Devices
