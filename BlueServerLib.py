@@ -29,7 +29,7 @@ import glob
 import re
 import subprocess
 from datetime import datetime
-
+from termcolor import colored
 LocalhostName="Server_Localhost"
 def ReadFile(filename):
  bin= open(filename,"rb").read()
@@ -87,7 +87,7 @@ class camera:
 class server:
  def log(self,level,info):
   now=datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
-  print("{} [{}] - [{}] {}".format(now,LocalhostName,level,info))
+  print("{} [{}] - [{}] {}".format(now,LocalhostName,colored(level.text,level.color),info))
   sys.stdout.flush()
  def SendText(self,conn,val):
   import lightblue
