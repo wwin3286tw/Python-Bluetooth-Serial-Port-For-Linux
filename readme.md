@@ -83,8 +83,8 @@ bash <(wget -qO- https://gist.githubusercontent.com/wwin3286tw/ae7ef8149e474475b
 cd ~/blueServer
 ```
 ## Uninstall
-'''
+```bash
 cd~ 
 rm -rf blueServer/
-'''
+```
 
