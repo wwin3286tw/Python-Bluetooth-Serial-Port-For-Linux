@@ -36,12 +36,12 @@
     "resource_busy": "資源忙碌中，暫時不可用"
   },
   "msg_level": {
-    "info": "訊息",
-    "warning": "警告",
-    "error": "錯誤",
-    "debug": "除錯",
-    "verbose": "詳細",
-    "dipshit": "幹話"
+    "info": {"text":"訊息","color":"green"},
+    "warning": {"text":"警告","color":"yellow"},
+    "error": {"text":"錯誤","color":"red"},
+    "debug": {"text":"除錯","color":"white"},
+    "verbose": {"text":"詳細","color":"blue"},
+    "dipshit": {"text":"幹話","color":"gary"}
   },
   "msg_direction": {
     "TX": "送出",
