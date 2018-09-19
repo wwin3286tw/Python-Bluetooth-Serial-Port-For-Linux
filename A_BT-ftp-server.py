@@ -77,7 +77,7 @@ def doing1(conn,data):
   bsl.server().SendText(conn,'shuting down!')
 
 def doing2(conn,data):
- bsl.server().log(R.msg_level.info.text,data)
+ bsl.server().log(R.msg_level.info,data)
  x=os.path.isfile(data.split(' ')[1])
  if data.split()[0]=="get":
  #if (data.split()[1]!=""):
@@ -103,10 +103,10 @@ def main(restart):
   sock.listen(1)
   lightblue.advertise("EchoService", sock, lightblue.RFCOMM)
   if (restart):
-   bsl.server().log(R.msg_level.info.text,R.server_msg.info.server_restart_success)
-  bsl.server().log(R.msg_level.info.text,R.server_msg.info.brocasting.format(sock.getsockname()[1]))
+   bsl.server().log(R.msg_level.info,R.server_msg.info.server_restart_success)
+  bsl.server().log(R.msg_level.info,R.server_msg.info.brocasting.format(sock.getsockname()[1]))
   conn, addr = sock.accept()
-  bsl.server().log(R.msg_level.info.text,R.server_msg.info.new_connection.format(addr[0]))
+  bsl.server().log(R.msg_level.info,R.server_msg.info.new_connection.format(addr[0]))
   flag=True
   while(flag):
    data = conn.recv(1024).rstrip()
@@ -115,7 +115,7 @@ def main(restart):
    command_selector(conn,data)
  except KeyboardInterrupt:
   print
-  bsl.server().log(R.msg_level.info.text,R.server_msg.info.user_interrupt)
+  bsl.server().log(R.msg_level.info,R.server_msg.info.user_interrupt)
   exit();
  except Exception as exception:
   exceptionString=str(exception)
@@ -126,21 +126,22 @@ def main(restart):
   error_code=bsl.common().GetErrorCode(exceptionString)
   #print('error_code: {}'.format(error_code))
   if (error_code=='98'):
-   bsl.server().log(R.msg_level.error.text,R.server_msg.error.address_or_port_in_use)
+   bsl.server().log(R.msg_level.error,R.server_msg.error.address_or_port_in_use)
    terminated = True
   elif (error_code=='104'):
-   bsl.server().log(R.msg_level.info.text,R.server_msg.info.user_disconnect)
-   bsl.server().log(R.msg_level.info.text,R.server_msg.warning.server_encountered_fixable_error)
-   bsl.server().log(R.msg_level.info.text,R.server_msg.warning.server_fixing_error)
+   bsl.server().log(R.msg_level.info,R.server_msg.info.user_disconnect)
+   bsl.server().log(R.msg_level.info,R.server_msg.warning.server_encountered_fixable_error)
+   bsl.server().log(R.msg_level.info,R.server_msg.warning.server_fixing_error)
    conn.close()
    sock.close()
-   bsl.server().log(R.msg_level.info.text,R.server_msg.info.restart_server)
+   bsl.server().log(R.msg_level.info,R.server_msg.info.restart_server)
    main(True)
   elif (error_code=='13'):
-   bsl.server().log(R.msg_level.error.text,R.local_msg.permission_denied)
+   bsl.server().log(R.msg_level.error,R.local_msg.permission_denied)
    terminated = True
   elif (error_code=='111'):
-   bsl.server().log(R.msg_level.error.text,R.local_msg.connection_refused)
+   bsl.server().log(R.msg_level.error,R.local_msg.connection_refused)
   
 if __name__ == '__main__':
  main(False)
+
