@@ -1,5 +1,6 @@
 # <font color="Green">Python Bluetooth Classic Serial Port Communication</font>
 ## <font color="orange">WARNING: DEPRECATED, THIS GIST WILL NO LONGER ABLE TO MAINTAIN.</font>
+## <font color="orange">THIS　SCRIPTS COMES WITH ABSOLUTELY NO WARRANTY</font>
 ## New issue
 1. Format the data.
 2. String and bytes using different channel.
