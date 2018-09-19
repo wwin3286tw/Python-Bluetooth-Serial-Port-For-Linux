@@ -91,7 +91,7 @@ class server:
   sys.stdout.flush()
  def SendText(self,conn,val):
   import lightblue
-  self.log(R.msg_level.info.text,"{} {}".format(R.msg_direction.TX,val))
+  self.log(R.msg_level.info,"{} {}".format(R.msg_direction.TX,val))
   conn.send(val+'\n')
 class common:
  def argc(self,arg_array):
