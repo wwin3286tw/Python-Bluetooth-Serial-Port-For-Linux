@@ -1,9 +1,10 @@
-# <font color="Green">Python Bluetooth Classic Serial Port Communication<font>
-## WARNING: DEPRECATED, THIS GIST WILL NO LONGER ABLE TO MAINTAIN.
+# <font color="Green">Python Bluetooth Classic Serial Port Communication</font>
+## <font color="orange">WARNING: DEPRECATED, THIS GIST WILL NO LONGER ABLE TO MAINTAIN.</font>
 ## New issue
 1. Format the data.
 2. String and bytes using different channel.
 3. Add Wifi mode for faster file trasnfer.
+4. Consider format function naming.
 ## Suggest platform and Software Dependency
 1. Linux(Ubuntu 16.04 tested)
 2. Python2 only
@@ -87,4 +88,3 @@ cd ~/blueServer
 cd ~
 rm -rf blueServer/
 ```
-
