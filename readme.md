@@ -64,7 +64,7 @@ sudo ./A_BT-ftp-server.py
 #sudo btmon #監聽藍芽封包
 
 ```
-## Normal
+## Manual
 ```bash=
 sudo nmcli dev wifi connect Kaiwood password 0660006000 ifname wlan0;wait
 git config --global http.sslverify false
@@ -76,10 +76,15 @@ chmod 755 *.sh;
 ./run.sh;
 
 ```
-## Three line Installation(Fucking Wlan Setting)
+## Quick Install
 ```bash=
 sudo nmcli dev wifi connect Kaiwood password 0660006000 ifname wlan0;wait;
 bash <(wget -qO- https://gist.githubusercontent.com/wwin3286tw/ae7ef8149e474475b14fde89b7c8783c/raw/cd63385fe16dff2e98b4d8bc795ab5e947e8c1f6/quick.sh);
 cd ~/blueServer
 ```
+## Uninstall
+'''
+cd~ 
+rm -rf blueServer/
+'''
 
