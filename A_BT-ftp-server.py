@@ -85,7 +85,7 @@ def doing2(conn,data):
    title_start="{},{},{}".format(R.file_msg.file_exist,x,'+')
    title_end="{},{},{}".format(R.file_msg.file_exist,x,'-')
    bsl.server().SendText(conn,title_start)
-   conn.send(bs1.GetBase64Encode(bsl.ReadFile(data.split()[1])))
+   conn.send(bsl.GetBase64Encode(bsl.ReadFile(data.split()[1])))
    bsl.server().SendText(conn,title_end)
   if (not(x)):
    bsl.server().SendText(conn,R.file_msg.file_not_exist)
