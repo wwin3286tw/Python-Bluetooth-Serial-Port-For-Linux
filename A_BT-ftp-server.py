@@ -84,9 +84,9 @@ def doing2(conn,data):
   if(x):
    title_start="{},{},{}".format(R.file_msg.file_exist,x,'+')
    title_end="{},{},{}".format(R.file_msg.file_exist,x,'-')
-   bsl.server().SendText(conn,title_start)
+   bsl.server().SendText(conn,R.protocol.start_png_mode)
    conn.send(bsl.GetBase64Encode(bsl.ReadFile(data.split()[1])))
-   bsl.server().SendText(conn,title_end)
+   bsl.server().SendText(conn,R.protocol.end_png_mode)
   if (not(x)):
    bsl.server().SendText(conn,R.file_msg.file_not_exist)
 def command_selector(conn,cmd):
