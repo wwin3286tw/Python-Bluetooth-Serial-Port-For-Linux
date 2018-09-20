@@ -100,6 +100,11 @@ class server:
   import lightblue
   self.log(R.msg_level.info,"{} {}".format(R.msg_direction.TX,val))
   conn.send(val+'\n')
+ def SendText(self,conn,val,show):
+  import lightblue
+  if (show):
+   self.log(R.msg_level.info,"{} {}".format(R.msg_direction.TX,val))
+  conn.send(val+'\n')
 class common:
  def argc(self,arg_array):
   return len(arg_array.split(' '))
