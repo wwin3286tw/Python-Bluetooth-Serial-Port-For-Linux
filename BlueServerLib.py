@@ -27,6 +27,7 @@ import os
 import json
 import glob
 import re
+import base64
 import subprocess
 from datetime import datetime
 from termcolor import colored
@@ -34,6 +35,12 @@ LocalhostName="Server_Localhost"
 def ReadFile(filename):
  bin= open(filename,"rb").read()
  return bin
+def GetBase64Encode(bin):
+ return base64.b64encode(bin)
+
+def GetBase64Decode(bin):
+ return base64.b64decode(bin)
+
 def ReadAllText(filename):
  all_text=""
  with io.open(filename, mode='r', encoding='utf-8') as f:
@@ -77,7 +84,7 @@ class device:
      devices.append(dinfo)
   return devices
 class camera:
- #這裡務必宣告成物件，再使用相機 #支援多相機操營養
+ #這裡務必宣告成物件在使用相機 #支援多相機操營養
  def __init__(self,camPath):
   self.CamPath=camPath
  def take_photo(self,Filename):
