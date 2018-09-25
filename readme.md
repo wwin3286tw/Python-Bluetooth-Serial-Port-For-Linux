@@ -24,7 +24,9 @@
 3. Camera Control, Take picture.
 4. Waiting you to add more function.
 # Installation
-  
+# Reference
+## [開機開啟藍芽](https://unix.stackexchange.com/questions/92036/enabling-bluetooth-discoverability-upon-start-up)
+
 ## Manual reference
 ```bash=
 #sudo nmcli dev wifi connect ? password ? ifname wlan0
