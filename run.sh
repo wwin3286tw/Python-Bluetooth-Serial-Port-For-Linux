@@ -18,7 +18,7 @@ log "快速安裝 apt-fast..."
 /bin/bash -c "$(curl -sL https://git.io/vokNn)"
 log "apt-fast 安裝完成"
 log "開始安裝主要元件，這需費時較久，請稍後。"
-sudo apt-fast -y install build-essential cmake pkg-config cmake automake autoconf autotools-dev fswebcam unzip p7zip-full locate libbluetooth-dev libopenobex* python-pip libusb-dev libdbus-1-dev libglib2.0-dev libudev-dev libical-dev libreadline-dev bluez-tools;wait
+sudo apt-fast -y install build-essential cmake pkg-config cmake automake autoconf autotools-dev fswebcam unzip p7zip-full locate libbluetooth-dev libopenobex* python-pip libusb-dev libdbus-1-dev libglib2.0-dev libudev-dev libical-dev libreadline-dev bluez-tools python-termcolor;wait
 log "主要元件安裝完成"
 log "開始克隆必要的python程式庫"
 cd ~/
