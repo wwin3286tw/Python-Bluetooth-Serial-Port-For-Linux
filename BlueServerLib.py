@@ -28,6 +28,7 @@ import json
 import glob
 import re
 import base64
+import socket
 import subprocess
 from datetime import datetime
 from termcolor import colored
@@ -68,7 +69,11 @@ def GetFileList():
  list+="]"
  return list
 ##Most frequently use
-
+class service:
+ def start_bhttpd_service(port,dir):
+  os.system("sudo busybox httpd -p {0} -h {1}".format(port,dir))
+ def stop_bhttpd_service(port,dir):
+  os.system("sudo killall busybox")
 class device:
  #sudo udevadm info --query=all /dev/video1 | grep 'VENDOR_ID\|MODEL_ID\|SERIAL_SHORT'
  def usb_info(self):
@@ -115,6 +120,8 @@ class common:
   else:
    error_code=s
   return error_code
+ def GetIP():
+  return [l for l in ([ip for ip in socket.gethostbyname_ex(socket.gethostname())[2] if not ip.startswith("127.")][:1], [[(s.connect(('8.8.8.8', 53)), s.getsockname()[0], s.close()) for s in [socket.socket(socket.AF_INET, socket.SOCK_DGRAM)]][0][1]]) if l][0][0]
 ResourceFile="resource.json"
 R=GetResource(ResourceFile)
 #server().log(R.msg_level.info,R.file_msg.folder_exist)
