@@ -93,3 +93,11 @@ cd ~/blueServer
 cd ~
 rm -rf blueServer/
 ```
+
+## Debugging Reinstall(如果你更新了程式，只是想重新安裝，請執行以下命令)
+```bash
+git clone https://gist.github.com/wwin3286tw/ae7ef8149e474475b14fde89b7c8783c ~/blueServer;
+cd blueServer;
+chmod 755 *.py;
+chmod 755 *.sh;
+```
