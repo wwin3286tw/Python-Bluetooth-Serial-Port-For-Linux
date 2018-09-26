@@ -56,35 +56,43 @@ cam0=bsl.camera(cam_path) #建立相機物件
 def WriteDefaultResource(): #可能廢棄，若遭遇到資源檔消失的問題，可使用此命令寫回
  resource='{"server_msg":{"error":{"server_encountered_error":"伺服器遭遇錯誤","address_or_port_in_use":"位置或連接口正在被使用中","cam_not_exist":"相機不存在","wifi_not_exist":"WiFi不存在","bt_not_exist":"藍芽不存在","ble_not_exist":"低功耗藍芽不存在","other_devices_fail":"其他裝置啟動失敗，無法啟動","other_devices_not_exist":"其他裝置不存在，無法啟動"},"info":{"restart_server":"伺服器正在重新啟動","user_disconnect":"使用者離線","server_restart_success":"伺服器成功重啟","user_interrupt":"伺服器收到使用者中斷","user_interrupt_and_going_offine":"伺服器收到使用者中斷，準備離線","operaction_done":"操作已經完成","operacting":"操作進行中","new_connection":"[新連線] 來自: {}","brocasting":"廣播並聆聽第{}頻道..."},"warning":{"server_encountered_fixable_error":"伺服器遭遇到可處理的錯誤","server_fixing_error":"伺服器正在嘗試修復錯誤"}},"file_msg":{"file_exist":"檔案存在","folder_exist":"資料夾存在","object_path_exist":"檔案路徑存在","file_not_exist":"檔案不存在","folder_not_exist":"資料夾不存在","object_path_not_exist":"檔案路徑不存在","resource_busy":"資源忙碌中，暫時不可用"},"msg_level":{"info":{"text":"訊息","color":"green"},"warning":{"text":"警告","color":"yellow"},"error":{"text":"錯誤","color":"red"},"debug":{"text":"除錯","color":"white"},"verbose":{"text":"詳細","color":"blue"},"dipshit":{"text":"幹話","color":"gary"}},"msg_direction":{"TX":"送出","RX":"收到"},"local_msg":{"permission_denied":"請以root權限執行本程式","connection_refused":"連線被拒，請使用sudo hciconfig檢查","path_not_found_error":"請檢查設定檔 /etc/systemd/system/dbus-org.bluez.service，是否設定正確","bt_not_available":"請檢查藍芽裝置是否啟動"}}'
  #TODO: 寫回檔案的指令
-def doing1(conn,data): #只有一個命令(argc=1)的往這裡送 #conn為藍芽連線通道，若有需要，本程式將可支援多連線 #data為命令
- if (data=="get"): #取得預設檔名檔案，預設值為sample.png #鬆散的命令方法，不建議使用
+def doing1(conn,cmd): #只有一個命令(argc=1)的往這裡送 #conn為藍芽連線通道，若有需要，本程式將可支援多連線 #data為命令
+ if (cmd=="get"): #取得預設檔名檔案，預設值為sample.png #鬆散的命令方法，不建議使用
   pass
   #bsl.server().SendText(conn,"DEFAULT,-") #廢棄
   #conn.send(bsl.ReadFile(Default_FileName))
   #bsl.server().SendText(conn,"DEFAULT,+")
- elif data=="close": #關閉藍芽連線，程式將結束
+ elif cmd=="close": #關閉藍芽連線，程式將結束
   flag=False #設定旗標，設定為false程式將不再等待，來自手機藍芽的命令
- #elif data=="filelen": #Deprecated, Use ls to get file info.
+ #elif cmd=="filelen": #Deprecated, Use ls to get file info.
  # bsl.server().SendText(conn,bsl.getFileLen(Default_FileName))
- elif data=="ok": #echo 測試，藉由來回發送ok，測試藍芽連線是否正常
+ elif cmd=="ok": #echo 測試，藉由來回發送ok，測試藍芽連線是否正常
   bsl.server().SendText(conn,"ok") #送回ok給手機端
- elif data=="ls": #以json格式送回檔案清單
+ elif cmd=="ls": #以json格式送回檔案清單
   bsl.server().SendText(conn,bsl.GetFileList()) #使用library取得檔案清單
- elif data=="shot": #拍照命令
+ elif cmd=="shot": #拍照命令
   bsl.server().SendText(conn,R.server_msg.info.operacting) #拍照中請稍後
   cam0.take_photo(Default_FileName) #將拍攝檔案儲存為sample.png
   bsl.server().SendText(conn,R.server_msg.info.operaction_done) #拍攝完成
- elif data=="camchk": #檢查相機是否存在 #TODO: 檢查是否為特定廠牌的相機，或者就保持寫死video1路徑
+ elif cmd=="camchk": #檢查相機是否存在 #TODO: 檢查是否為特定廠牌的相機，或者就保持寫死video1路徑
   if cam0.exists(): #檢查相機是否存在
    bsl.server().SendText(conn,R.file_msg.object_path_exist) #相機物件"在"路徑上 #無法使用檔案的檢測方法
   else:
    bsl.server().SendText(conn,R.file_msg.object_path_not_exist) #相機物件"不在"路徑上 #無法使用檔案的檢測方法
- elif data=="reboot": #重開機，當機台遇到不想解決的問題時，可以使用此命令
+ elif cmd=="reboot": #重開機，當機台遇到不想解決的問題時，可以使用此命令
   bsl.server().SendText(conn,'rebooting...') #重啟中
   os.system('reboot')
- elif data=="bye": #廢棄，為close命令的前身
+ elif cmd=="bye": #廢棄，為close命令的前身
   pass #填充用的空語句，保持縮排結構完整性
   #bsl.server().SendText(conn,'shuting down!')
+ elif cmd=="xget": #這裡採用busybox的httpd applet，簡化設定
+  bsl.service().stop_bhttpd_service() #不管有沒有，先送httpd終止命令
+  bsl.server().SendText(conn,R.service.bhttpd.starting) #伺服器被啟動了
+  bsl.service().start_bhttpd_service(80,".") #開始服務
+  # TO DO: 確認服務是否真的被啟動成功
+  bsl.server().SendText(conn,R.service.bhttpd.started) #伺服器已經被啟動
+ elif cmd=="geturl": #獲取檔案位置
+  bsl.server().SendText(conn,"http://{}/sample.png".format(bsl.common().GetIP())) #告知檔案位置。手機即可透過該位置下載檔案
 
 def doing2(conn,data): #argc=2的命令丟這邊
  bsl.server().log(R.msg_level.info,data) #伺服器紀錄
@@ -99,14 +107,7 @@ def doing2(conn,data): #argc=2的命令丟這邊
    bsl.server().SendText(conn,R.protocol.end_png_mode) #送出檔案開始字串
   if (not(isfile)):#檔案不存在
    bsl.server().SendText(conn,R.file_msg.file_not_exist) #檔案不存在
- if cmd=="xget": #這裡採用busybox的httpd applet，簡化設定
-  bsl.service().stop_bhttpd_service() #不管有沒有，先送httpd終止命令
-  bsl.server().SendText(conn,R.service.bhttpd.starting) #伺服器被啟動了
-  bsl.service().start_bhttpd_service(80,".") #開始服務
-  # TO DO: 確認服務是否真的被啟動成功
-  bsl.server().SendText(conn,R.service.bhttpd.started) #伺服器已經被啟動
- if cmd=="geturl": #獲取檔案位置
-  bsl.server().SendText(conn,"http://{}/sample.png".format(bsl.common().GetIP())) #告知檔案位置。手機即可透過該位置下載檔案
+ 
 def command_selector(conn,cmd): #命令選擇器，根據命令大小，丟給FUNCTION
  if (bsl.common().argc(cmd)==1):
   doing1(conn,cmd)
