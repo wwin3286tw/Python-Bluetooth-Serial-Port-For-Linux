@@ -23,14 +23,19 @@
 2. Support bluetooth classic Serial Port Profile(SPP) Devices
 ## 描述
 1. Can communication With Bluetooth Device(PC、RaspberryPI) using Android or support SPP device.
+1. 能夠用Android與藍芽裝置(單板電腦、電腦)
 2. Built-in File Transport Protocol.
+2. 內建檔案傳輸功能
 3. Camera Control, Take picture.
+3. 相機控制，拍張照吧！
 4. Waiting you to add more function.
-
-# Reference
+4. 等你加入更多功能
+5. WIFI file trasnfer
+5. WIFI檔案傳輸功能
+# 專案參考
 ### 1. [開機開啟藍芽](https://unix.stackexchange.com/questions/92036/enabling-bluetooth-discoverability-upon-start-up)
 ### 2. [資源檔JSON編輯器](https://jsoneditoronline.org/)
-
+### 3. [我的腦袋](javascript:alert("有問題請打09700471387，找Jack");)
 # Installation
 ## Manual reference
 ```bash=
