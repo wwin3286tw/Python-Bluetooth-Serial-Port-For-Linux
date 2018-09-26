@@ -4,9 +4,8 @@
 ###Code Summary###
 Author: Jack
 E-Mail: wwin3286tw@yahoo.com.tw
-Date: 2018-09-12
-Time: 09:16:20 GMT+8
-Description: BlueTooth classic Serial port ccFTP(Control & Communication& File Transfer Protocol) Server
+Tested Date: 2018-09-14 11:39:15 GMT+8
+Description: BlueTooth classic Serial port ccFTP(Control & Communication& Fuck Trust Pig) Server support library
 ReadMe: 
 1. Using Java like R Resource File.
 2. #sed -i -e 's/\r$//' scriptname.sh #If you have DAMN ^M problem, try this shit.
@@ -20,134 +19,112 @@ Version Change info:
 '''
 
 
-import BlueServerLib as bsl
-import os
-import sys
-import base64
-import time
-import glob
-import time
-import json
-import subprocess
-import os.path
+##Most frequently access method, so I do not use fucking class.
 from datetime import datetime
-import lightblue
+import io
 import sys
+import os
+import json
+import glob
+import re
+import base64
+import socket
+import subprocess
+from datetime import datetime
+from termcolor import colored
+LocalhostName="Server_Localhost"
+def ReadFile(filename):
+ bin= open(filename,"rb").read()
+ return bin
+def GetBase64Encode(bin):
+ return base64.b64encode(bin)
 
-debugMode=True
-# sys.setdefaultencoding() does not exist, here!
-reload(sys)  # Reload does the trick!
-sys.setdefaultencoding('UTF8')
+def GetBase64Decode(bin):
+ return base64.b64decode(bin)
 
-cam_path='/dev/video1'
-ResourceFile="resource.json"
-R=bsl.GetResource(ResourceFile)
-Default_FileName="sample.png"
-cam0=bsl.camera(cam_path)
-TransferMethod=1
-#BT=0, WIFI=1
-def WriteDefaultResource():
- resource='{"server_msg":{"error":{"server_encountered_error":"伺服器遭遇錯誤","address_or_port_in_use":"位置或連接口正在被使用中","cam_not_exist":"相機不存在","wifi_not_exist":"WiFi不存在","bt_not_exist":"藍芽不存在","ble_not_exist":"低功耗藍芽不存在","other_devices_fail":"其他裝置啟動失敗，無法啟動","other_devices_not_exist":"其他裝置不存在，無法啟動"},"info":{"restart_server":"伺服器正在重新啟動","user_disconnect":"使用者離線","server_restart_success":"伺服器成功重啟","user_interrupt":"伺服器收到使用者中斷","user_interrupt_and_going_offine":"伺服器收到使用者中斷，準備離線","operaction_done":"操作已經完成","operacting":"操作進行中","new_connection":"[新連線] 來自: {}","brocasting":"廣播並聆聽第{}頻道..."},"warning":{"server_encountered_fixable_error":"伺服器遭遇到可處理的錯誤","server_fixing_error":"伺服器正在嘗試修復錯誤"}},"file_msg":{"file_exist":"檔案存在","folder_exist":"資料夾存在","object_path_exist":"檔案路徑存在","file_not_exist":"檔案不存在","folder_not_exist":"資料夾不存在","object_path_not_exist":"檔案路徑不存在","resource_busy":"資源忙碌中，暫時不可用"},"msg_level":{"info":{"text":"訊息","color":"green"},"warning":{"text":"警告","color":"yellow"},"error":{"text":"錯誤","color":"red"},"debug":{"text":"除錯","color":"white"},"verbose":{"text":"詳細","color":"blue"},"dipshit":{"text":"幹話","color":"gary"}},"msg_direction":{"TX":"送出","RX":"收到"},"local_msg":{"permission_denied":"請以root權限執行本程式","connection_refused":"連線被拒，請使用sudo hciconfig檢查","path_not_found_error":"請檢查設定檔 /etc/systemd/system/dbus-org.bluez.service，是否設定正確","bt_not_available":"請檢查藍芽裝置是否啟動"}}'
+def ReadAllText(filename):
+ all_text=""
+ with io.open(filename, mode='r', encoding='utf-8') as f:
+  all_text=f.read()
+ return all_text
+def LoadResource(ResourceFile):
+ return ReadAllText(ResourceFile)
+def GetResource(ResourceFile):
+ from collections import namedtuple
+ return json.loads(LoadResource(ResourceFile),object_hook=lambda d: namedtuple('X', d.keys())(*d.values()))
 
-def doing1(conn,data):
- if (data=="get"):
-  bsl.server().SendText(conn,"DEFAULT,-")
-  conn.send(bsl.ReadFile(Default_FileName))
-  bsl.server().SendText(conn,"DEFAULT,+")
- elif data=="close":
-  flag=False
- #elif data=="filelen": #Deprecated, Use ls to get file info.
- # bsl.server().SendText(conn,bsl.getFileLen(Default_FileName))
- elif data=="ok":
-  bsl.server().SendText(conn,"ok")
- elif data=="ls":
-  bsl.server().SendText(conn,bsl.GetFileList())
- elif data=="shot":
-  bsl.server().SendText(conn,R.server_msg.info.operacting)
-  cam0.take_photo(Default_FileName)
-  bsl.server().SendText(conn,R.server_msg.info.operaction_done)
- elif data=="camchk":
-  if cam0.exists():
-   bsl.server().SendText(conn,R.file_msg.object_path_exist)
+
+def GetFileLen(filename):
+  return str(os.path.getsize(filename))
+def ListFilesWithExt(ext):
+ return glob.glob("*." + ext )
+def GetFileList():
+ list="[";files=ListFilesWithExt('png');fileCount=len(files);count=0;
+ for file in files:
+  count+=1;
+  if (count<=fileCount-1):
+   list+= json.dumps({'name':file,'size':GetFileLen(file)},separators=(',',':')) + ","
   else:
-   bsl.server().SendText(conn,R.file_msg.object_path_not_exist)
- elif data=="reboot":
-  bsl.server().SendText(conn,'rebooting...')
-  os.system('reboot')
- elif data=="bye":
-  bsl.server().SendText(conn,'shuting down!')
-
-def doing2(conn,data):
- bsl.server().log(R.msg_level.info,data)
- isfile=os.path.isfile(data.split(' ')[1])
- if data.split()[0]=="get":
-  if(isfile):
-   title_start="{},{},{}".format(R.file_msg.file_exist,x,'+')
-   title_end="{},{},{}".format(R.file_msg.file_exist,x,'-')
-   bsl.server().SendText(conn,R.protocol.start_png_mode)
-   bsl.server().SendData(conn,bsl.GetBase64Encode(bsl.ReadFile(data.split()[1])))
-   bsl.server().SendText(conn,R.protocol.end_png_mode)
-  if (not(isfile)):
-   bsl.server().SendText(conn,R.file_msg.file_not_exist)
- if data.split()[0]=="xget": #這裡採用busybox的httpd applet，簡化設定
-  if(isfile):
-   bsl.server().SendText(conn,R.service.bhttpd.starting) 
-   bsl.service().start_bhttpd_service(80,"./blueServer/")
-   # TO DO: 確認服務是否真的被啟動成功
-   bsl.server().SendText(conn,R.service.bhttpd.started)
-   bsl.server().SendText(conn,"http://{}/sample.png".format(bsl.common.GetIP()))
-def command_selector(conn,cmd):
- if (bsl.common().argc(cmd)==1):
-  doing1(conn,cmd)
- elif(bsl.common().argc(cmd)==2):
-  doing2(conn,cmd)
-
-def main(restart):
- try:
-  sock = lightblue.socket()
-  sock.bind(("", 1))
-  sock.listen(1)
-  lightblue.advertise("EchoService", sock, lightblue.RFCOMM)
-  if (restart):
-   bsl.server().log(R.msg_level.info,R.server_msg.info.server_restart_success)
-  bsl.server().log(R.msg_level.info,R.server_msg.info.brocasting.format(sock.getsockname()[1]))
-  conn, addr = sock.accept()
-  bsl.server().log(R.msg_level.info,R.server_msg.info.new_connection.format(addr[0]))
-  flag=True
-  while(flag):
-   data = conn.recv(1024).rstrip()
-   #print(data)
-   bsl.server().log(R.msg_level.info,"{} {}".format(R.msg_direction.RX,data))
-   command_selector(conn,data)
- except KeyboardInterrupt:
-  print
-  bsl.server().log(R.msg_level.info,R.server_msg.info.user_interrupt)
-  exit();
- except Exception as exception:
-  exceptionString=str(exception)
-  if (debugMode):
-   exc_type, exc_obj, exc_tb = sys.exc_info()
-   fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-   print("{}, {}, {}, {}".format(exc_type, fname, exc_tb.tb_lineno,exceptionString))
-  error_code=bsl.common().GetErrorCode(exceptionString)
-  #print('error_code: {}'.format(error_code))
-  if (error_code=='98'):
-   bsl.server().log(R.msg_level.error,R.server_msg.error.address_or_port_in_use)
-   terminated = True
-  elif (error_code=='104'):
-   bsl.server().log(R.msg_level.info,R.server_msg.info.user_disconnect)
-   bsl.server().log(R.msg_level.info,R.server_msg.warning.server_encountered_fixable_error)
-   bsl.server().log(R.msg_level.info,R.server_msg.warning.server_fixing_error)
-   conn.close()
-   sock.close()
-   bsl.server().log(R.msg_level.info,R.server_msg.info.restart_server)
-   main(True)
-  elif (error_code=='13'):
-   bsl.server().log(R.msg_level.error,R.local_msg.permission_denied)
-   terminated = True
-  elif (error_code=='111'):
-   bsl.server().log(R.msg_level.error,R.local_msg.connection_refused)
-  
-if __name__ == '__main__':
- main(False)
-
+   list+= json.dumps({'name':file,'size':GetFileLen(file)},separators=(',',':'))
+ list+="]"
+ return list
+##Most frequently use
+class service:
+ def start_bhttpd_service(port,dir):
+  os.system("sudo busybox httpd -p {0} -h {1}".format(port,dir))
+ def stop_bhttpd_service(port,dir):
+  os.system("sudo killall busybox")
+class device:
+ #sudo udevadm info --query=all /dev/video1 | grep 'VENDOR_ID\|MODEL_ID\|SERIAL_SHORT'
+ def usb_info(self):
+  device_re = re.compile("Bus\s+(?P<bus>\d+)\s+Device\s+(?P<device>\d+).+ID\s(?P<id>\w+:\w+)\s(?P<tag>.+)$", re.I)
+  df = subprocess.check_output("lsusb")
+  devices = []
+  for i in df.split('\n'):
+   if i:
+    info = device_re.match(i)
+    if info:
+     dinfo = info.groupdict()
+     dinfo['device'] = '/dev/bus/usb/%s/%s' % (dinfo.pop('bus'), dinfo.pop('device'))
+     devices.append(dinfo)
+  return devices
+class camera:
+ #這裡務必宣告成物件在使用相機 #支援多相機操營養
+ def __init__(self,camPath):
+  self.CamPath=camPath
+ def take_photo(self,Filename):
+  os.system("sudo fswebcam -d {0} -r 800x600 --no-title --no-timestamp --no-subtitle --no-shadow --no-banner {1} --png 9".format(self.CamPath,Filename));
+ def exists(self):
+  return os.path.exists(self.CamPath);
+class server:
+ def log(self,level,info):
+  now=datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
+  print("{} [{}] - [{}] {}".format(now,LocalhostName,colored(level.text,level.color),info))
+  sys.stdout.flush()
+ def SendText(self,conn,val):
+  import lightblue
+  self.log(R.msg_level.info,"{} {}".format(R.msg_direction.TX,val))
+  conn.send(val+'\n')
+ def SendData(self,conn,val):
+  import lightblue
+  #self.log(R.msg_level.info,"{} {}".format(R.msg_direction.TX,val))
+  conn.send(val+'\n')
+class common:
+ def argc(self,arg_array):
+  return len(arg_array.split(' '))
+ def GetErrorCode(self,s):
+  if s.endswith(")") and s.startswith("("):
+   s = s[:-1]
+   s = s[1:]
+   error_code=s.split(',')[0]
+  else:
+   error_code=s
+  return error_code
+ def GetIP():
+  return [l for l in ([ip for ip in socket.gethostbyname_ex(socket.gethostname())[2] if not ip.startswith("127.")][:1], [[(s.connect(('8.8.8.8', 53)), s.getsockname()[0], s.close()) for s in [socket.socket(socket.AF_INET, socket.SOCK_DGRAM)]][0][1]]) if l][0][0]
+ResourceFile="resource.json"
+R=GetResource(ResourceFile)
+#print(R.services.bhttpd.starting)
+#server().log(R.msg_level.info,R.file_msg.folder_exist)
+#cam0=camera('/dev/video0')
+#print(cam0.exists())
