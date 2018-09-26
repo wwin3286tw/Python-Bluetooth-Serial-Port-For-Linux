@@ -93,7 +93,7 @@ def doing2(conn,data):
   if(isfile):
    bsl.service().stop_bhttpd_service() #不管有沒有，先送httpd終止命令
    bsl.server().SendText(conn,R.service.bhttpd.starting)
-   bsl.service().start_bhttpd_service(80,"./blueServer/")
+   bsl.service().start_bhttpd_service(80,".")
    # TO DO: 確認服務是否真的被啟動成功
    bsl.server().SendText(conn,R.service.bhttpd.started)
    bsl.server().SendText(conn,"http://{}/sample.png".format(bsl.common().GetIP()))
