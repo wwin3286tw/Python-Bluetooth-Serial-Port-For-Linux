@@ -70,9 +70,9 @@ def GetFileList():
  return list
 ##Most frequently use
 class service:
- def start_bhttpd_service(port,dir):
+ def start_bhttpd_service(self,port,dir):
   os.system("sudo busybox httpd -p {0} -h {1}".format(port,dir))
- def stop_bhttpd_service(port,dir):
+ def stop_bhttpd_service(self):
   os.system("sudo killall busybox")
 class device:
  #sudo udevadm info --query=all /dev/video1 | grep 'VENDOR_ID\|MODEL_ID\|SERIAL_SHORT'
