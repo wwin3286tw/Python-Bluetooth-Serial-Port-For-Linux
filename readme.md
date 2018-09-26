@@ -26,7 +26,7 @@
 # Installation
 # Reference
 ### 1. [開機開啟藍芽](https://unix.stackexchange.com/questions/92036/enabling-bluetooth-discoverability-upon-start-up)
-
+### 2. [資源檔JSON編輯器](https://jsoneditoronline.org/)
 ## Manual reference
 ```bash=
 #sudo nmcli dev wifi connect ? password ? ifname wlan0
