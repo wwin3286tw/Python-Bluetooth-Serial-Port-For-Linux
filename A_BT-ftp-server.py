@@ -4,6 +4,7 @@
 ###Code Summary###
 作者: Jack
 電子信箱: wwin3286tw@yahoo.com.tw
+手機：0970041387
 日期: 2018-09-26
 時間: 09:16:20 GMT+8
 描述: BlueTooth classic Serial port ccFTP(Control & Communication& File Transfer Protocol) Server
@@ -18,11 +19,11 @@
 4. 程式碼比以前乾淨數十倍。
 5. 增加中文註解、翻譯英文註解
 問題(issue)：
-可以考慮格式化命令與回應(formatting request command and respone data)
+1. 可以考慮格式化命令與回應(formatting request command and respone data)
 TODO:
-可以考慮新增LOG寫入到檔案功能
-考慮使用 命令後回應流程，移除人類可讀的描述資訊，進而簡化
-例如：一個命令對應一個回應
+1. 可以考慮新增LOG寫入到檔案功能
+2. 考慮使用 命令後回應流程，移除人類可讀的描述資訊，進而簡化
+   例如：一個命令對應一個回應
 ###Code Summary###
 '''
 
