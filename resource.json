@@ -56,5 +56,14 @@
   "protocol":{
     "start_png_mode":"BEG_PNG",
     "end_png_mode":"END_PNG"
+  },
+  "service":{
+    "bhttpd":{
+      "starting":"正在啟動檔案傳輸服務...",
+      "stopped":"檔案傳輸服務已經停止",
+      "stopping":"正在嘗試停止檔案傳輸服務...",
+      "started":"檔案傳輸服務已經啟動"
+    }
+    
   }
 }
