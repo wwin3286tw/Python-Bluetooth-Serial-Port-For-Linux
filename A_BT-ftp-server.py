@@ -21,7 +21,8 @@
 可以考慮格式化命令與回應(formatting request command and respone data)
 TODO:
 可以考慮新增LOG寫入到檔案功能
-考慮使用 命令後回應，移除人類可讀的描述資訊，進而簡化
+考慮使用 命令後回應流程，移除人類可讀的描述資訊，進而簡化
+例如：一個命令對應一個回應
 ###Code Summary###
 '''
 
