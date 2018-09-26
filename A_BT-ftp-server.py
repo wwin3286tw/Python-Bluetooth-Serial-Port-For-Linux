@@ -90,11 +90,12 @@ def doing2(conn,data):
   if (not(isfile)):
    bsl.server().SendText(conn,R.file_msg.file_not_exist)
  if data.split()[0]=="xget": #這裡採用busybox的httpd applet，簡化設定
-  bsl.server().SendText(conn,R.services.bhttpd.starting) 
-  bsl.service.start_bhttpd_service(80,"./blueServer/")
-  # TO DO: 確認服務是否真的被啟動成功
-  bsl.server().SendText(conn,R.services.bhttpd.started)
-  bsl.server().SendText(conn,"http://{}/sample.png".format(bsl.common.GetIP()))
+  if(isfile):
+   bsl.server().SendText(conn,R.services.bhttpd.starting) 
+   bsl.service.start_bhttpd_service(80,"./blueServer/")
+   # TO DO: 確認服務是否真的被啟動成功
+   bsl.server().SendText(conn,R.services.bhttpd.started)
+   bsl.server().SendText(conn,"http://{}/sample.png".format(bsl.common.GetIP()))
 def command_selector(conn,cmd):
  if (bsl.common().argc(cmd)==1):
   doing1(conn,cmd)
