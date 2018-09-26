@@ -35,9 +35,8 @@
 # 專案參考
 ### 1. [開機開啟藍芽](https://unix.stackexchange.com/questions/92036/enabling-bluetooth-discoverability-upon-start-up)
 ### 2. [資源檔JSON編輯器](https://jsoneditoronline.org/)
-### 3. [我的腦袋](javascript:alert("有問題請打09700471387，找Jack");)
-# Installation
-## Manual reference
+# 安裝
+## 手動安裝參考
 ```bash=
 #sudo nmcli dev wifi connect ? password ? ifname wlan0
 sudo nmcli dev wifi connect Kaiwood password 0660006000 ifname wlan0;wait
@@ -80,7 +79,7 @@ sudo ./A_BT-ftp-server.py
 #sudo btmon #監聽藍芽封包
 
 ```
-## Manual
+## 手動
 ```bash=
 sudo nmcli dev wifi connect Kaiwood password 0660006000 ifname wlan0;wait
 git config --global http.sslverify false
@@ -92,13 +91,13 @@ chmod 755 *.sh;
 ./run.sh;
 
 ```
-## Quick Install
+## 快速安裝
 ```bash=
 sudo nmcli dev wifi connect Kaiwood password 0660006000 ifname wlan0;wait;
 bash <(wget -qO- https://gist.githubusercontent.com/wwin3286tw/ae7ef8149e474475b14fde89b7c8783c/raw/cd63385fe16dff2e98b4d8bc795ab5e947e8c1f6/quick.sh);
 cd ~/blueServer
 ```
-## Uninstall
+## 解除安裝
 ```bash
 cd ~
 rm -rf blueServer/
@@ -106,6 +105,8 @@ rm -rf blueServer/
 
 ## Debugging Reinstall(如果你更新了程式，只是想重新安裝，請執行以下命令)
 ```bash
+cd ~
+rm -rf blueServer/
 git clone https://gist.github.com/wwin3286tw/ae7ef8149e474475b14fde89b7c8783c ~/blueServer;
 cd blueServer;
 chmod 755 *.py;
