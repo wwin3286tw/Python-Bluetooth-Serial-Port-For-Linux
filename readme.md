@@ -3,30 +3,35 @@
 ## <font color="orange">WARNING: DEPRECATED, THIS GIST WILL NO LONGER ABLE TO MAINTAIN.</font>
 ### <font color="orange">THIS SCRIPTS COMES WITH ABSOLUTELY NO WARRANTY, USE AT YOUR OWN RISK.</font>
 
-## New issue
-1. Format the data.
-2. String and bytes using different channel.
-3. Add Wifi mode for faster file trasnfer.
-4. Consider format function naming.
-## Suggest platform and Software Dependency
+## 版本更新記錄
+1. 將資料格式化
+2. 字串和二進位資料使用不同通道
+3. 增加Wifi模式
+4. 考慮統一function命名風格
+
+## 專案議題(Project issue)
+1. 都寫在程式的開頭(Code Summary)了，請前往查看
+## 建議的機台平台與軟體相依性
 1. Linux(Ubuntu 16.04 tested)
 2. Python2 only
 3. Lightblue module(only on python2)
-## Server Hardware Recommand
+## 機台硬體需求
 1. Single Board Computer(Ex: Raspberry)
 2. Linux Base PC with WIFI and BT
-## Client Hardware Recommand
+## 客戶端硬體需求
 1. Android Phone(tested)
 2. Support bluetooth classic Serial Port Profile(SPP) Devices
-## Description
+## 描述
 1. Can communication With Bluetooth Device(PC、RaspberryPI) using Android or support SPP device.
 2. Built-in File Transport Protocol.
 3. Camera Control, Take picture.
 4. Waiting you to add more function.
-# Installation
+
 # Reference
 ### 1. [開機開啟藍芽](https://unix.stackexchange.com/questions/92036/enabling-bluetooth-discoverability-upon-start-up)
 ### 2. [資源檔JSON編輯器](https://jsoneditoronline.org/)
+
+# Installation
 ## Manual reference
 ```bash=
 #sudo nmcli dev wifi connect ? password ? ifname wlan0
