@@ -58,6 +58,7 @@ def WriteDefaultResource(): #可能廢棄，若遭遇到資源檔消失的問題
  #TODO: 寫回檔案的指令
 def doing1(conn,data): #只有一個命令(argc=1)的往這裡送 #conn為藍芽連線通道，若有需要，本程式將可支援多連線 #data為命令
  if (data=="get"): #取得預設檔名檔案，預設值為sample.png #鬆散的命令方法，不建議使用
+  pass
   #bsl.server().SendText(conn,"DEFAULT,-") #廢棄
   #conn.send(bsl.ReadFile(Default_FileName))
   #bsl.server().SendText(conn,"DEFAULT,+")
