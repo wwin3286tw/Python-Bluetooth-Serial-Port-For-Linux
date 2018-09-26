@@ -135,18 +135,18 @@ def main(restart): #主程式 (是否重啟)
   print
   bsl.server().log(R.msg_level.info,R.server_msg.info.user_interrupt)
   exit();
- except Exception as exception:
-  exceptionString=str(exception)
-  if (debugMode):
+ except Exception as exception: #捕抓到錯誤
+  exceptionString=str(exception) #錯誤原因字串
+  if (debugMode): #除錯模式?
    exc_type, exc_obj, exc_tb = sys.exc_info()
    fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
    print("{}, {}, {}, {}".format(exc_type, fname, exc_tb.tb_lineno,exceptionString))
   error_code=bsl.common().GetErrorCode(exceptionString)
   #print('error_code: {}'.format(error_code))
-  if (error_code=='98'):
+  if (error_code=='98'): #端口正在被使用中例外
    bsl.server().log(R.msg_level.error,R.server_msg.error.address_or_port_in_use)
    terminated = True
-  elif (error_code=='104'):
+  elif (error_code=='104'):#使用者離線例外
    bsl.server().log(R.msg_level.info,R.server_msg.info.user_disconnect)
    bsl.server().log(R.msg_level.info,R.server_msg.warning.server_encountered_fixable_error)
    bsl.server().log(R.msg_level.info,R.server_msg.warning.server_fixing_error)
@@ -154,10 +154,10 @@ def main(restart): #主程式 (是否重啟)
    sock.close()
    bsl.server().log(R.msg_level.info,R.server_msg.info.restart_server)
    main(True)
-  elif (error_code=='13'):
+  elif (error_code=='13'): #權限不足例外
    bsl.server().log(R.msg_level.error,R.local_msg.permission_denied)
    terminated = True
-  elif (error_code=='111'):
+  elif (error_code=='111'): #連線被拒例外
    bsl.server().log(R.msg_level.error,R.local_msg.connection_refused)
   
 if __name__ == '__main__': #避免程式被誤引入，當作library使用
