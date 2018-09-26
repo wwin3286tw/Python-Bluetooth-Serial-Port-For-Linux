@@ -2,25 +2,26 @@
 # -*- coding: UTF-8 -*-
 '''
 ###Code Summary###
-Author: Jack
-E-Mail: wwin3286tw@yahoo.com.tw
-Date: 2018-09-12
-Time: 09:16:20 GMT+8
-Description: BlueTooth classic Serial port ccFTP(Control & Communication& File Transfer Protocol) Server
-ReadMe: 
-1. Using Java like R Resource File.
-2. #sed -i -e 's/\r$//' scriptname.sh #If you have DAMN ^M problem, try this shit.
-3. Enjoy fucking salary.
+作者: Jack
+電子信箱: wwin3286tw@yahoo.com.tw
+日期: 2018-09-26
+時間: 09:16:20 GMT+8
+描述: BlueTooth classic Serial port ccFTP(Control & Communication& File Transfer Protocol) Server
+讀我: 
+1. 使用類似Android的R資源檔
+2. 如果你遭遇到腳本的 ^M 錯誤，請使用 sed -i -e 's/\r$//' 腳本名稱.sh
+3. 享受吧
 Version Change info:
-1. Code Refactoried.
-2. Naming improved.
-3. Add debug mode, Enable to show exception.
-4. Code more clear than before. Although cannot see the older code.
+1. 程式碼已經重構
+2. 命名改進
+3. 增加除錯模式，開啟以顯示錯誤
+4. 程式碼比以前乾淨數十倍。
+5. 增加中文註解、翻譯英文註解
 ###Code Summary###
 '''
 
 
-import BlueServerLib as bsl
+import BlueServerLib as bsl #自己寫的外部程式庫，模組化並加速開發
 import os
 import sys
 import base64
@@ -34,17 +35,17 @@ from datetime import datetime
 import lightblue
 import sys
 
-debugMode=True
+debugMode=True #是否開啟除錯模式，不開啟將無法看到錯誤訊息
 # sys.setdefaultencoding() does not exist, here!
-reload(sys)  # Reload does the trick!
-sys.setdefaultencoding('UTF8')
-
-cam_path='/dev/video1'
-ResourceFile="resource.json"
-R=bsl.GetResource(ResourceFile)
-Default_FileName="sample.png"
-cam0=bsl.camera(cam_path)
-TransferMethod=1
+reload(sys)  # Reload does the trick! #來自stackoverflow的答案 #https://stackoverflow.com/questions/2276200/changing-default-encoding-of-python
+sys.setdefaultencoding('UTF8') #設定預設編碼，不再使用ASCII編碼，避免不必要的編碼錯誤
+cam_path='/dev/video1' #設定攝影機位置 #TODO: 偵測正確的相機位置
+ResourceFile="resource.json" #資源檔位置
+R=bsl.GetResource(ResourceFile) #讀取資源檔
+Default_FileName="sample.png" #預設試紙照片儲存檔名
+cam0=bsl.camera(cam_path) #建立相機物件
+#TransferMethod=1 #廢棄，請在Android端使用
+#xget 命令使用WiFi
 #BT=0, WIFI=1
 def WriteDefaultResource():
  resource='{"server_msg":{"error":{"server_encountered_error":"伺服器遭遇錯誤","address_or_port_in_use":"位置或連接口正在被使用中","cam_not_exist":"相機不存在","wifi_not_exist":"WiFi不存在","bt_not_exist":"藍芽不存在","ble_not_exist":"低功耗藍芽不存在","other_devices_fail":"其他裝置啟動失敗，無法啟動","other_devices_not_exist":"其他裝置不存在，無法啟動"},"info":{"restart_server":"伺服器正在重新啟動","user_disconnect":"使用者離線","server_restart_success":"伺服器成功重啟","user_interrupt":"伺服器收到使用者中斷","user_interrupt_and_going_offine":"伺服器收到使用者中斷，準備離線","operaction_done":"操作已經完成","operacting":"操作進行中","new_connection":"[新連線] 來自: {}","brocasting":"廣播並聆聽第{}頻道..."},"warning":{"server_encountered_fixable_error":"伺服器遭遇到可處理的錯誤","server_fixing_error":"伺服器正在嘗試修復錯誤"}},"file_msg":{"file_exist":"檔案存在","folder_exist":"資料夾存在","object_path_exist":"檔案路徑存在","file_not_exist":"檔案不存在","folder_not_exist":"資料夾不存在","object_path_not_exist":"檔案路徑不存在","resource_busy":"資源忙碌中，暫時不可用"},"msg_level":{"info":{"text":"訊息","color":"green"},"warning":{"text":"警告","color":"yellow"},"error":{"text":"錯誤","color":"red"},"debug":{"text":"除錯","color":"white"},"verbose":{"text":"詳細","color":"blue"},"dipshit":{"text":"幹話","color":"gary"}},"msg_direction":{"TX":"送出","RX":"收到"},"local_msg":{"permission_denied":"請以root權限執行本程式","connection_refused":"連線被拒，請使用sudo hciconfig檢查","path_not_found_error":"請檢查設定檔 /etc/systemd/system/dbus-org.bluez.service，是否設定正確","bt_not_available":"請檢查藍芽裝置是否啟動"}}'
@@ -90,13 +91,12 @@ def doing2(conn,data):
   if (not(isfile)):
    bsl.server().SendText(conn,R.file_msg.file_not_exist)
  if data.split()[0]=="xget": #這裡採用busybox的httpd applet，簡化設定
-  if(isfile):
-   bsl.service().stop_bhttpd_service() #不管有沒有，先送httpd終止命令
-   bsl.server().SendText(conn,R.service.bhttpd.starting)
-   bsl.service().start_bhttpd_service(80,".")
-   # TO DO: 確認服務是否真的被啟動成功
-   bsl.server().SendText(conn,R.service.bhttpd.started)
-   bsl.server().SendText(conn,"http://{}/sample.png".format(bsl.common().GetIP()))
+  bsl.service().stop_bhttpd_service() #不管有沒有，先送httpd終止命令
+  bsl.server().SendText(conn,R.service.bhttpd.starting)
+  bsl.service().start_bhttpd_service(80,".")
+  # TO DO: 確認服務是否真的被啟動成功
+  bsl.server().SendText(conn,R.service.bhttpd.started)
+  bsl.server().SendText(conn,"http://{}/sample.png".format(bsl.common().GetIP()))
 def command_selector(conn,cmd):
  if (bsl.common().argc(cmd)==1):
   doing1(conn,cmd)
