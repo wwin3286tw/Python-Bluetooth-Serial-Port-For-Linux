@@ -1,11 +1,11 @@
 # <font color="Green">Python Bluetooth Classic Serial Port Communication</font>
 # Copyright © 2018-09 by Yi,Jia-Ye Partition Rights Reserved
 # 程式碼包含使用第三方著作(https://github.com/0-1-0/lightblue-0.4)
-## 1. 必須公布原始碼，不得作為專有軟體
-## 2. 僅能收取傳送與提供上必要的工本費用
-## 3. 不能阻止他人針對軟體做任何逆向工程
-## 4. 可執行程式必須附帶原始碼
-## 5. 不得作為專有軟體及任何商業用途
+1. 必須公布原始碼，不得作為專有軟體
+2. 僅能收取傳送與提供上必要的工本費用
+3. 不能阻止他人針對軟體做任何逆向工程
+4. 可執行程式必須附帶原始碼
+5. 不得作為專有軟體及任何商業用途
 ## <font color="orange">WARNING: DEPRECATED, THIS GIST WILL NO LONGER ABLE TO MAINTAIN.</font>
 ## <font color="orange">警告：腳本已經廢棄，不再做任何維護！</font>
 ### <font color="orange">THIS SCRIPTS COMES WITH ABSOLUTELY NO WARRANTY, USE AT YOUR OWN RISK.</font>
