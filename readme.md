@@ -43,6 +43,12 @@
 # 專案參考
 ### 1. [開機開啟藍芽](https://unix.stackexchange.com/questions/92036/enabling-bluetooth-discoverability-upon-start-up)
 ### 2. [資源檔JSON編輯器](https://jsoneditoronline.org/)
+# 專案
+1. A_BT-ftp-server.py 伺服器核心檔案
+2. BlueServerLib.py 伺服器支援函數庫
+3. UserMode_flowchart.xml 連線流程圖 [draw.io](https://draw.io/)
+4. resource.json 伺服器資源檔 [jsoneditoronline](https://jsoneditoronline.org/)
+5. 其他檔案，不做解釋。
 # 安裝
 ## 手動安裝參考
 ```bash=
