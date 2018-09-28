@@ -109,7 +109,7 @@ class server: #伺服器
   import lightblue
   #self.log(R.msg_level.info,"{} {}".format(R.msg_direction.TX,val))
   conn.send(val+'\n')
- def copyleft_declaration():
+ def copyleft_declaration(self):
   print("=========================================")
   print("|             BlueServer                |")
   print("|     Version:2018-09-28_fix-170        |")
