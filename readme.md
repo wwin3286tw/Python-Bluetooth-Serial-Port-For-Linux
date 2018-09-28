@@ -108,7 +108,7 @@ chmod 755 *.sh;
 ## 快速安裝
 ```bash=
 sudo nmcli dev wifi connect Kaiwood password 0660006000 ifname wlan0;wait;
-bash <(wget -qO- https://gist.githubusercontent.com/wwin3286tw/ae7ef8149e474475b14fde89b7c8783c/raw/cd63385fe16dff2e98b4d8bc795ab5e947e8c1f6/quick.sh);
+bash <(wget -qO- https://raw.githubusercontent.com/wwin3286tw/Python-Bluetooth-Serial-Port-For-Linux/master/quick.sh);
 cd ~/blueServer
 ```
 ## 解除安裝
@@ -121,7 +121,7 @@ rm -rf blueServer/
 ```bash
 cd ~
 rm -rf blueServer/
-git clone https://gist.github.com/wwin3286tw/ae7ef8149e474475b14fde89b7c8783c ~/blueServer;
+git clone https://github.com/wwin3286tw/Python-Bluetooth-Serial-Port-For-Linux.git ~/blueServer;
 cd blueServer;
 chmod 755 *.py;
 chmod 755 *.sh;
