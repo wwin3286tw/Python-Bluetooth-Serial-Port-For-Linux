@@ -109,6 +109,14 @@ class server: #伺服器
   import lightblue
   #self.log(R.msg_level.info,"{} {}".format(R.msg_direction.TX,val))
   conn.send(val+'\n')
+ def copyleft_declaration():
+  print("=========================================")
+  print("|             BlueServer                |")
+  print("|     Version:2018-09-28_fix-170        |")
+  print("| 本著作，包含使用GPL v3授權之衍生作品  |")
+  print("|    不得用於專有軟體及任何商業用途     |")
+  print("| author: wwin3286tw@yahoo.com.tw       |")
+  print("=========================================")
 class common:
  def argc(self,arg_array): #計算命令的長度，有幾個空格分開
   return len(arg_array.split(' '))

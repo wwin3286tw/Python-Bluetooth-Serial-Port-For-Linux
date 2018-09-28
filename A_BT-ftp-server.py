@@ -128,6 +128,7 @@ def main(restart): #主程式 (是否重啟)
   conn, addr = sock.accept() #新連線
   bsl.server().log(R.msg_level.info,R.server_msg.info.new_connection.format(addr[0])) 
   flag=True
+  bsl.server().copyleft_declaration()
   while(flag):
    data = conn.recv(1024).rstrip()
    #print(data)
