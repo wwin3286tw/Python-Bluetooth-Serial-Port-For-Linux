@@ -118,6 +118,7 @@ def command_selector(conn,cmd): #命令選擇器，根據命令大小，丟給FU
 
 def main(restart): #主程式 (是否重啟)
  try: #避免錯誤，捕抓意外情況
+  bsl.server().copyleft_declaration()
   sock = lightblue.socket() #產生socket物件
   sock.bind(("", 1)) #綁定通道，若通道被占用，綁定通道將出錯
   sock.listen(1) #聆聽RFCOMM通道1
@@ -128,7 +129,7 @@ def main(restart): #主程式 (是否重啟)
   conn, addr = sock.accept() #新連線
   bsl.server().log(R.msg_level.info,R.server_msg.info.new_connection.format(addr[0])) 
   flag=True
-  bsl.server().copyleft_declaration()
+  
   while(flag):
    data = conn.recv(1024).rstrip()
    #print(data)
